@@ -76,15 +76,16 @@ async function setUsers(token) {
 
   
 // EX : SELECT * FROM reservations WHERE date = '2020-03-05'
-async function getReservation(date) {
+async function getReservation(date, roomName) {
 
     console.log('getReservation : ' + date);
+    console.log('getReservation : ' + roomName);
 
     let conn, rows;
     try {
       conn = await pool.getConnection();
       conn.query('USE my_db'); // 사용할 DB 명시
-      rows = await conn.query('SELECT * FROM reservations WHERE date = ?', [date]); // 쿼리 실행
+      rows = await conn.query('SELECT * FROM reservations WHERE date = ? AND roomName = ? ORDER BY startTime', [date, roomName]); // 쿼리 실행
     }
     catch (err) { throw err; }
     finally {
