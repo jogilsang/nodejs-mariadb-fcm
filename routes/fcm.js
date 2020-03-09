@@ -14,8 +14,8 @@ router.get('/', function (req, res, next) {
     // collapse_key: 'your_collapse_key',
 
     notification: {
-      title: 'test title',
-      body: 'test body'
+      title: '커뮤니티룸1',
+      body: '조길상님께서 주간회의 사유로 13:00 ~ 15:00 까지 예약하셨습니다.'
     }
 
     // data: {  //you can send only notification or only data(or include both)
@@ -23,6 +23,7 @@ router.get('/', function (req, res, next) {
     //   my_another_key: 'my another value'
     // }
   };
+
 
   console.log * (message);
 

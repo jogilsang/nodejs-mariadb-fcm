@@ -47,8 +47,9 @@ router.get('/setReservation', function(req, res, next) {
 router.get('/getReservation', function(req, res, next) {
 
   var date = req.query.date;
+  var roomName = req.query.roomName;
 
-  mdbConn.getReservation(date)
+  mdbConn.getReservation(date, roomName)
     .then((rows) => { res.json(rows) }) // 쿼리 결과가 JSON 형태로 출력됨
     .catch((err) => { console.error(err); });
 });
