@@ -51,7 +51,7 @@ async function setUsers(token) {
     var startTime = params.startTime;
     var endTime = params.endTime;
     var token = params.token;
-    var id = params.id;
+    var roomId = params.roomId;
 
     var arr = [];
     arr.push(title);
@@ -61,7 +61,7 @@ async function setUsers(token) {
     arr.push(startTime);
     arr.push(endTime);
     arr.push(token);
-    arr.push(id);
+    arr.push(roomId);
 
     let conn, rows;
     try {
