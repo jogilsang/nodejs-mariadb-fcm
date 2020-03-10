@@ -36,7 +36,7 @@ router.get('/setReservation', function (req, res, next) {
   var startTime = req.query.startTime;
   var endTime = req.query.endTime;
   var token = req.query.token;
-  var roomId = req.query.roomId;
+  var roomId = String(req.query.roomId);
 
   console.log('setReservation :');
 
