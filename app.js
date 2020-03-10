@@ -3,13 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var apisRouter = require('./routes/api');
 var fcmRouter = require('./routes/fcm');
 
+// error
+var cors = require('cors');
+
+// GET /assets/icon/favicon.ico 404
+var favicon = require('serve-favicon')
+var path = require('path')
+
 var app = express();
+
+// favicon 설정
+app.use(favicon(path.join('./public/images','favicon.ico')));
 
 // CORS 설정
 app.use(cors());
@@ -25,6 +34,9 @@ app.listen(80, function () {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());

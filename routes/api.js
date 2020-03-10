@@ -2,6 +2,8 @@ var express = require('express');
 var mdbConn = require('../models/mariaDBConn');
 var router = express.Router();
 
+
+
 /* GET users listing. */
 router.get('/getRooms', function(req, res, next) {
   mdbConn.getRooms()
