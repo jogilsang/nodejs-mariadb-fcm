@@ -70,6 +70,8 @@ async function setUsers(token) {
     catch (err) { throw err; }
     finally {
       if (conn) conn.end();
+
+      // 결과 반환
       return rows;
     }
   }
