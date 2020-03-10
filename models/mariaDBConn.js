@@ -51,6 +51,7 @@ async function setUsers(token) {
     var startTime = params.startTime;
     var endTime = params.endTime;
     var token = params.token;
+    var id = params.id;
 
     var arr = [];
     arr.push(title);
@@ -60,12 +61,13 @@ async function setUsers(token) {
     arr.push(startTime);
     arr.push(endTime);
     arr.push(token);
+    arr.push(id);
 
     let conn, rows;
     try {
       conn = await pool.getConnection();
       conn.query('USE my_db'); // 사용할 DB 명시
-      rows = await conn.query('INSERT INTO reservations VALUES (id, ?, ?, ?, ?, ?, ? ,?)', arr); // 쿼리 실행
+      rows = await conn.query('INSERT INTO reservations VALUES (id, ?, ?, ?, ?, ?, ? ,?, ?)', arr); // 쿼리 실행
     }
     catch (err) { throw err; }
     finally {

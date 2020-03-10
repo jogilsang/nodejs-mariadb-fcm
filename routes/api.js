@@ -36,6 +36,7 @@ router.get('/setReservation', function (req, res, next) {
   var startTime = req.query.startTime;
   var endTime = req.query.endTime;
   var token = req.query.token;
+  var id = req.query.id;
 
   console.log('setReservation :');
 
@@ -49,7 +50,7 @@ router.get('/setReservation', function (req, res, next) {
 
       // PUSH 구간
       var message = {
-        to: '/topics/' + roomName,
+        to: '/topics/' + id,
 
         // 커뮤니티룸1
         // '조길상님께서 주간회의 사유로 13:00 ~ 15:00 까지 예약하셨습니다.'
