@@ -9,8 +9,12 @@ var fcm = new FCM(serverKey);
 router.get('/', function (req, res, next) {
   res.send('FCM 단체전송');
 
+  var id = String(1);
+  console.log(1);
+  console.log(id);
+
   var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-    to: '/topics/default',
+    to: '/topics/' + 'default',
     // collapse_key: 'your_collapse_key',
 
     notification: {
