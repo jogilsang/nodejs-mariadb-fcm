@@ -86,4 +86,14 @@ router.get('/getReservation', function (req, res, next) {
     .catch((err) => { console.error(err); });
 });
 
+router.get('/delReservation', function (req, res, next) {
+
+  var id = req.query.id;
+  var token = req.query.token;
+
+  mdbConn.getReservation(id, token)
+    .then((rows) => { res.json(rows) }) // 쿼리 결과가 JSON 형태로 출력됨
+    .catch((err) => { console.error(err); });
+});
+
 module.exports = router;
