@@ -88,7 +88,7 @@ router.get('/delReservation', function (req, res, next) {
   var id = req.query.id;
   var token = req.query.token;
 
-  mdbConn.getReservation(id, token)
+  mdbConn.delReservation(id, token)
     .then((rows) => { res.json(rows) }) // 쿼리 결과가 JSON 형태로 출력됨
     .catch((err) => { console.error(err); });
 });
@@ -109,7 +109,7 @@ router.get('/updateReservation', function (req, res, next) {
 
   console.log('updateReservation :');
 
-  mdbConn.setReservation(req.query)
+  mdbConn.updateReservation(req.query)
     .then((rows) => {
       res.json(rows)
 

@@ -144,6 +144,9 @@ async function getReservation(date, roomName) {
   // 3. 그 외 삭제불가 통보
   async function delReservation(id, token){
 
+    console.log('delReservation : ' + id);
+    console.log('delReservation : ' + token);
+
     let conn, rows;
 
     var admin = 'admin';

@@ -3,8 +3,16 @@ nodejs + mariadb + fcm + express
 
 ### URL
 ```
+WEB Lang : Nodejs
+WEB Framework : express
 WEB URL : http://ec2-3-17-80-149.us-east-2.compute.amazonaws.com:3000
+
+DB Lang : MariaDB
+DB IDE : Toad Edge
 DB URL : http://ec2-3-17-80-149.us-east-2.compute.amazonaws.com:3306
+
+Environment : Ubuntu 18.04 + Docker
+
 ```
 ### Query
 ```
@@ -18,7 +26,7 @@ delReservation : 예약정보 삭제 (D)
 
 ### table
 ```
-MariaDB [my_db]> select * from reservations;
+reservations
 +----+------------------------+------------+--------------------+------------------+-----------+---------+------------+--------+
 | id | title                  | date       | userName           | roomName         | startTime | endTime | token      | roomId |
 +----+------------------------+------------+--------------------+------------------+-----------+---------+------------+--------+
@@ -35,7 +43,7 @@ MariaDB [my_db]> select * from reservations;
 +----+------------------------+------------+--------------------+------------------+-----------+---------+------------+--------+
 10 rows in set (0.00 sec)
 
-MariaDB [my_db]> select * from users;
+users
 +----+-----------------+
 | id | token           |
 +----+-----------------+
@@ -48,7 +56,7 @@ MariaDB [my_db]> select * from users;
 +----+-----------------+
 6 rows in set (0.01 sec)
 
-MariaDB [my_db]> select * from rooms;
+rooms
 +----+-------------+------------+--------+
 | id | name        | department | isUsed |
 +----+-------------+------------+--------+
