@@ -77,6 +77,47 @@ async function setUsers(token) {
     }
   }
 
+  // EX : INSERT INTO reservations VALUES (id, '사업부 주간회의', '2020-03-05', '조길상', '커뮤니티룸1', '12:00', '13:00', 'tokenAdmin');
+  async function updateReservation(params) {
+
+    var id = params.id;
+    var title = params.title;
+    var date = params.date;
+    var userName = params.userName;
+    var roomName = params.roomName;
+    var startTime = params.startTime;
+    var endTime = params.endTime;
+    var token = params.token;
+    var roomId = params.roomId;
+   
+    var arr = [];
+    arr.push(title);
+    arr.push(userName);
+    arr.push(startTime);
+    arr.push(endTime);
+    arr.push(id);
+
+    // UPDATE reservations SET  title = '연예가중계', userName = '현빈', startTime = '10:00',endTime = '11:00' WHERE id = 10
+    let conn, rows;
+    try {
+      conn = await pool.getConnection();
+      conn.query('USE my_db'); // 사용할 DB 명시
+      rows = await conn.query('UPDATE reservations SET ' +
+                                                      'title = ?, '+
+                                                      'userName = ?, ' +
+                                                      'startTime = ?, ' +
+                                                      'endTime = ? WHERE id = ?', arr)
+                                                      
+    }
+    catch (err) { throw err; }
+    finally {
+      if (conn) conn.end();
+
+      // 결과 반환
+      return rows;
+    }
+  }
+
   
 // EX : SELECT * FROM reservations WHERE date = '2020-03-05'
 async function getReservation(date, roomName) {
@@ -124,5 +165,6 @@ module.exports = { getRooms,
     setUsers, 
     setReservation, 
     getReservation,
-    delReservation
+    delReservation,
+    updateReservation
   }

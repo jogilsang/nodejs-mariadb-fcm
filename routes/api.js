@@ -40,9 +40,6 @@ router.get('/setReservation', function (req, res, next) {
 
   console.log('setReservation :');
 
-  console.log(title);
-  console.log(date);
-  console.log(userName);
 
   mdbConn.setReservation(req.query)
     .then((rows) => {
@@ -94,6 +91,54 @@ router.get('/delReservation', function (req, res, next) {
   mdbConn.getReservation(id, token)
     .then((rows) => { res.json(rows) }) // 쿼리 결과가 JSON 형태로 출력됨
     .catch((err) => { console.error(err); });
+});
+
+/* GET setReservation listing. */
+// id, title, date, userName, roomName, startTime, endTime, token
+router.get('/updateReservation', function (req, res, next) {
+
+  var id = req.query.id;
+  var title = req.query.title;
+  var date = req.query.date;
+  var userName = req.query.userName;
+  var roomName = req.query.roomName;
+  var startTime = req.query.startTime;
+  var endTime = req.query.endTime;
+  var token = req.query.token;
+  var roomId = String(req.query.roomId);
+
+  console.log('updateReservation :');
+
+  mdbConn.setReservation(req.query)
+    .then((rows) => {
+      res.json(rows)
+
+      // PUSH 구간
+      var message = {
+        to: '/topics/' + roomId,
+
+        // 커뮤니티룸1
+        // '조길상님께서 주간회의 사유로 13:00 ~ 15:00 까지로 수정하셨습니다'
+
+        notification: {
+          title: roomName,
+          body: userName + '님께서 ' + title + ' 사유로 ' + startTime + ' ~ ' + endTime + '까지로 수정하셨습니다.'
+        }
+
+      };
+
+      fcm.send(message, function (err, response) {
+        if (err) {
+          console.log("Something has gone wrong!");
+        } else {
+          console.log("Successfully sent with response: ", response);
+        }
+      });
+
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 module.exports = router;
