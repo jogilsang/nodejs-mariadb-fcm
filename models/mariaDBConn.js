@@ -150,8 +150,6 @@ async function getReservation(date, roomName) {
 
     var id = params.id;
     var token = params.token;
-    var roomId = params.roomId;
-    var roomName = params.roomName;
 
     var arr = [];
 

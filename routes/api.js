@@ -89,6 +89,8 @@ router.get('/delReservation', function (req, res, next) {
   var token = req.query.token;
   var roomId = req.query.roomId;
   var roomName = req.query.roomName;
+  var startTime = req.query.startTime;
+  var endTime = req.query.endTime;
 
   mdbConn.delReservation(req.query)
     .then((rows) => {
