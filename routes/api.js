@@ -87,10 +87,43 @@ router.get('/delReservation', function (req, res, next) {
 
   var id = req.query.id;
   var token = req.query.token;
+  var roomId = req.query.roomId;
+  var roomName = req.query.roomName;
 
-  mdbConn.delReservation(id, token)
-    .then((rows) => { res.json(rows) }) // 쿼리 결과가 JSON 형태로 출력됨
-    .catch((err) => { console.error(err); });
+  mdbConn.delReservation(req.query)
+    .then((rows) => {
+      res.json(rows)
+    
+      console.log(rows);
+
+      // PUSH 구간
+      var message = {
+        to: '/topics/' + roomId,
+
+        // 커뮤니티룸1
+        // 13:00 ~ 15:00 예약이 취소됬습니다.'
+
+        notification: {
+          title: roomName,
+          body: startTime + ' ~ ' + endTime + ' 예약이 삭제되었습니다.'
+        }
+
+      };
+
+      fcm.send(message, function (err, response) {
+        if (err) {
+          console.log("Something has gone wrong!");
+        } else {
+          console.log("Successfully sent with response: ", response);
+        }
+      });
+
+
+    }
+    ) // 쿼리 결과가 JSON 형태로 출력됨
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 /* GET setReservation listing. */

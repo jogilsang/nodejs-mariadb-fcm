@@ -142,19 +142,30 @@ async function getReservation(date, roomName) {
   // 1. id와 token 값을 받는다.
   // 2. token이 admin 인경우 혹은 일차하는 경우 삭제
   // 3. 그 외 삭제불가 통보
-  async function delReservation(id, token){
-
-    console.log('delReservation : ' + id);
-    console.log('delReservation : ' + token);
+  async function delReservation(params){
 
     let conn, rows;
 
     var admin = 'admin';
 
+    var id = params.id;
+    var token = params.token;
+    var roomId = params.roomId;
+    var roomName = params.roomName;
+
+    var arr = [];
+
+    arr.push(id);
+    arr.push(token);
+    arr.push(admin);
+
+    console.log('delReservation : ' + id);
+    console.log('delReservation : ' + token);
+
     try {
       conn = await pool.getConnection();
       conn.query('USE my_db'); // 사용할 DB 명시
-      rows = await conn.query('DELETE FROM reservations WHERE id = ? AND (token = ? OR token = ?)', [id, token, admin]);
+      rows = await conn.query('DELETE FROM reservations WHERE id = ? AND (token = ? OR token = ?)', arr);
 
     }catch (err) {throw err;}
     finally{
