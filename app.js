@@ -31,6 +31,10 @@ app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 });
 
+app.listen(443, function () {
+  console.log('CORS-enabled web server listening on port 443')
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
