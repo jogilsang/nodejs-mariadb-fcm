@@ -20,7 +20,7 @@ var app = express();
 // https, letsencrypt
 // for ubuntu 18.04
 const fs = require('fs');
-const path = require('path');
+//const path = require('path');
 const HTTPS = require('https');
 var domain = 'jogilsang.xyz' // 구매한 도메인을 기재한다.
 
