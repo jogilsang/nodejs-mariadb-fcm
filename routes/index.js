@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
   // res.send('회의실 예약 앱 - 웹 서버');
   res.render('index',
     {
-      title : 'Hey'
+      title : 'Welcome to jogilsang site'
     }
   );
 });
