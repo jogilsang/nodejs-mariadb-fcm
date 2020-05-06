@@ -20,7 +20,7 @@ var app = express();
 // https, letsencrypt
 // for ubuntu 18.04
 const fs = require('fs');
-//const path = require('path');
+// const path = require('path');
 const HTTPS = require('https');
 var domain = 'jogilsang.xyz' // 구매한 도메인을 기재한다.
 
@@ -32,11 +32,11 @@ try {
   };
 
   HTTPS.createServer(option, app).listen(sslport, () => {
-    colorConsole.success(`[HTTPS] Soda Server is started on port ${colors.cyan(sslport)}`);
+    console.log('[HTTPS] Soda Server is started on port ${colors.cyan(sslport)}');
   });
 } catch (error) {
-  colorConsole.error('[HTTPS] HTTPS 오류가 발생하였습니다. HTTPS 서버는 실행되지 않습니다.');
-  colorConsole.warn(error);
+  console.log('[HTTPS] HTTPS 오류가 발생하였습니다. HTTPS 서버는 실행되지 않습니다.');
+  console.log(error);
 }
 
 // favicon 설정
